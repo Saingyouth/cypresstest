@@ -15,6 +15,12 @@ jobs:
         shell: bash
         run: |
           echo $(jq --arg a "${{ secrets.AUTOMATION_USERS }}" '.users = ($a)' config/ci.json) > config/ci.json 
-      - name: display
+      - name: Display config
         run: |
           cat config/ci.json
+      - name: Run Cypress
+        run: |
+          npm run cy:run
+      - name: Display Log
+        run: |
+          cat config/cypress.log

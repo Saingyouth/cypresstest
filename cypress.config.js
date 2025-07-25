@@ -23,9 +23,17 @@ users?.forEach((user) => {
 });
 
 module.exports = defineConfig({
+  
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      on('task', {
+        log(message) {
+          console.log(message); // Log to the console
+          // Log to a file (assuming 'logs' directory exists)
+          require('fs').appendFileSync('config/cypress.log', `${message}\n`);
+          return null; // Return null to indicate task completion
+        }
+      });
     },
     env: { ...cypressEnv, ...extractedUsers }
   },
