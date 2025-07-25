@@ -20,6 +20,7 @@ jobs:
           cat config/ci.json
       - name: Run Cypress
         run: |
+          npm install
           npm run cy:run
       - name: Display Log
         run: |
