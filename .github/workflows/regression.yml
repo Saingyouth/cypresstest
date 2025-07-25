@@ -1,0 +1,20 @@
+name: Cypress Regression
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Execute Cypress Test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Replace CI Configuration File
+        shell: bash
+        run: |
+          echo $(jq --arg a "${{ secrets.AUTOMATION_USERS }}" '.user = ($a)' config/ci.json) > config/ci.json 
+      - name: display
+        run: |
+          cat config/ci.json
