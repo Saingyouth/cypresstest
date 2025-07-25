@@ -1,4 +1,3 @@
 {
-  "user_name": "ci",
-  "password": "ci_password"
+  "users": "$AUTOMATION_USERS"
 }
