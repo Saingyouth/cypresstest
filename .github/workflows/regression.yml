@@ -11,15 +11,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create secrets JSON file
-        run: |
-          echo '${{ toJSON(secrets) }}' > secrets.json
-          jq . secrets.json
-
       - name: Replace CI Configuration File
+        env:
+            CONFIG_DATA: ${{ toJSON(secrets.AUTOMATION_USERS) }}
         shell: bash
         run: |
-          echo $(toJson(${{ secrets.AUTOMATION_USERS }}))
+          echo "Configuration data: $CONFIG_DATA"
           echo $(jq --argjson new_json_value '{"nested_key": "nested_value", "array_data": [1, 2]}' '.user |= $new_json_value' config/ci.json) > config/ci.json
           echo $(jq --arg a '${{ secrets.AUTOMATION_USERS }}' '.users |= $a' config/ci.json) > config/ci.json 
           cat config/ci.json
