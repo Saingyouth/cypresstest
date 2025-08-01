@@ -11,6 +11,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create secrets JSON file
+        run: |
+          echo '${{ toJSON(secrets) }}' > secrets.json
+          jq . secrets.json
+
       - name: Replace CI Configuration File
         shell: bash
         run: |
