@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "Configuration data: $CONFIG_DATA"
           echo $(jq --argjson new_json_value '{"nested_key": "nested_value", "array_data": [1, 2]}' '.user |= $new_json_value' config/ci.json) > config/ci.json
-          echo $(jq --arg a '${{ secrets.AUTOMATION_USERS }}' '.users |= $a' config/ci.json) > config/ci.json 
+          echo $(jq --arg a '$CONFIG_DATA' '.users |= $a' config/ci.json) > config/ci.json 
           cat config/ci.json
       - name: Display config
         run: |
