@@ -19,7 +19,7 @@ jobs:
       - name: Replace CI Configuration File
         shell: bash
         run: |
-          echo $(jq --arg a "${{ secrets.AUTOMATION_USERS }}" '.users |= $a' config/ci.json) > config/ci.json 
+          echo $(jq --arg a ${{ secrets.AUTOMATION_USERS }} '.users |= $a' config/ci.json) > config/ci.json 
           cat config/ci.json
       - name: Display config
         run: |
