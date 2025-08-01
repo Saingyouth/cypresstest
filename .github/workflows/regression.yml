@@ -19,7 +19,7 @@ jobs:
       - name: Replace CI Configuration File
         shell: bash
         run: |
-          echo $(jq --arg a ${{ secrets.AUTOMATION_USERS }} '.users |= $a' config/ci.json) > config/ci.json 
+          echo $(jq --argjson new_json_value '{"nested_key": "nested_value", "array_data": [1, 2]}' '.user |= $new_json_value' config/ci.json) > config/ci.json
           cat config/ci.json
       - name: Display config
         run: |
