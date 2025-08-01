@@ -20,6 +20,8 @@ jobs:
         run: |
           cat config/ci.json
       - name: Run Cypress
+        env:
+          environment: "ci"
         run: |
           npm install
           npm run cy:run

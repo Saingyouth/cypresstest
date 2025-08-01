@@ -12,6 +12,7 @@ const readConfigFile = (fileName) => {
   }
 }
 const cypressEnv = readConfigFile(isLocal ? 'config/local.json' : 'config/ci.json');
+console.log('env', cypressEnv);
 
 const users = cypressEnv?.users;
 const extractedUsers = [];
