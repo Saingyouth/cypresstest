@@ -1,3 +1,4 @@
 {
-  "users": "$AUTOMATION_USERS"
+  "users": "$AUTOMATION_USERS",
+  "user": "$AUTOMATION_USERS"
 }
