@@ -15,6 +15,7 @@ jobs:
         shell: bash
         run: |
           echo $(jq --arg a "${{ secrets.AUTOMATION_USERS }}" '.users = ($a)' config/ci.json) > config/ci.json 
+          cat config/ci.json
       - name: Display config
         run: |
           cat config/ci.json
